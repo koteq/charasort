@@ -767,16 +767,7 @@ function preloadImages() {
   let imagesLoaded = 0;
 
   const loadImage = async (src) => {
-    const blob = await fetch(src).then(res => res.blob());
-    return new Promise((res, rej) => {
-      const reader = new FileReader();
-      reader.onload = ev => {
-        progressBar(`Loading Image ${++imagesLoaded}`, Math.floor(imagesLoaded * 100 / totalLength));
-        res(ev.target.result);
-      };
-      reader.onerror = rej;
-      reader.readAsDataURL(blob);
-    });
+    return src;
   };
 
   return Promise.all(characterDataToSort.map(async (char, idx) => {
